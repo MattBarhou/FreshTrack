@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { StyleSheet } from "react-native";
-import { useEffect } from "react";
 
 export default function BarcodeModal({
   modalVisible,
@@ -22,21 +21,13 @@ export default function BarcodeModal({
   setCategory,
   productImageUrl,
 }) {
-  console.log("BarcodeModal rendering with:", {
-    modalVisible,
-    foodName,
-    category,
-    hasProductImage: !!productImageUrl,
-    productImageUrl: productImageUrl?.slice(0, 50), // Show just first 50 chars
-  });
-
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        setModalVisible(!modalVisible);
+        setModalVisible();
       }}
       onShow={() => {
         console.log("Modal shown with:", {
@@ -115,7 +106,7 @@ export default function BarcodeModal({
             <TouchableOpacity
               style={[styles.modalButton, styles.cancelButton]}
               onPress={() => {
-                setModalVisible(!modalVisible);
+                setModalVisible();
               }}
             >
               <Text style={styles.cancelButtonText}>Cancel</Text>

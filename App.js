@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import ScanScreen from "./screens/ScanScreen";
+import ItemDetailsScreen from "./screens/ItemDetailsScreen";
+
 import Toast from "react-native-toast-message";
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,13 @@ export default function App() {
             headerBackVisible: false,
           }}
           component={ScanScreen}
+        />
+        <Stack.Screen
+          name="ItemDetails"
+          options={{
+            headerShown: false,
+          }}
+          component={ItemDetailsScreen}
         />
       </Stack.Navigator>
       <Toast />

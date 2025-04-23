@@ -23,6 +23,7 @@ export default function ScanScreen({ navigation }) {
   const [category, setCategory] = useState("other");
   const [barcodeData, setBarcodeData] = useState("");
   const [loading, setLoading] = useState(false);
+  const [scannerKey, setScannerKey] = useState(0);
 
   const fetchProductDetails = async (barcode) => {
     try {
@@ -35,7 +36,6 @@ export default function ScanScreen({ navigation }) {
       if (data) {
         // Product found
         const productData = data.product;
-        console.log("Product data:", productData);
 
         // Extract product name
         const productName =
@@ -99,6 +99,15 @@ export default function ScanScreen({ navigation }) {
     fetchProductDetails(data);
   };
 
+  const resetScanner = () => {
+    setScannerKey((prevKey) => prevKey + 1);
+  };
+
+  const handleModalClose = () => {
+    setModalVisible(false);
+    resetScanner();
+  };
+
   const addFoodItem = async () => {
     try {
       // Validate inputs
@@ -136,6 +145,7 @@ export default function ScanScreen({ navigation }) {
       setCategory("other");
       setBarcodeData("");
       setModalVisible(false);
+      resetScanner();
     } catch (error) {
       console.error("Error adding food item: ", error);
       alert("Error adding food item: " + error.message);
@@ -185,12 +195,15 @@ export default function ScanScreen({ navigation }) {
           </View>
         </View>
 
-        <BarcodeScanner onBarcodeScanned={handleBarcodeScanned} />
+        <BarcodeScanner
+          key={scannerKey}
+          onBarcodeScanned={handleBarcodeScanned}
+        />
 
         {modalVisible && (
           <BarcodeModal
             modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
+            setModalVisible={handleModalClose}
             addFoodItem={addFoodItem}
             foodName={foodName}
             setFoodName={setFoodName}

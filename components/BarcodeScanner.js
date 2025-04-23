@@ -14,7 +14,6 @@ export default function BarcodeScanner({ onBarcodeScanned }) {
   const [scanned, setScanned] = useState(false);
   const [hasPermission, setHasPermission] = useState(null);
   const [scanning, setScanning] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
 
   // request camera permission when component mounts
   useEffect(() => {
@@ -29,12 +28,10 @@ export default function BarcodeScanner({ onBarcodeScanned }) {
   }, []);
 
   // function runs when barcode is scanned
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ data }) => {
     try {
       setScanned(true);
       setScanning(false);
-      setModalVisible(true);
-      console.log("Barcode scanned:", type, data);
       if (onBarcodeScanned) {
         onBarcodeScanned(data);
       }
@@ -98,7 +95,7 @@ export default function BarcodeScanner({ onBarcodeScanned }) {
         </CameraView>
       </View>
 
-      {scanned && !modalVisible && (
+      {scanned && (
         <View style={styles.scannedContainer}>
           <View style={styles.successIcon}>
             <Ionicons name="checkmark-circle" size={60} color="#22c55e" />
