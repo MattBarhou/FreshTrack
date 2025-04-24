@@ -28,11 +28,11 @@ export default function App() {
       (response) => {
         console.log("User responded to notification:", response);
 
-        // If the notification has itemId data, navigate to that item's details
-        const itemId = response.notification.request.content.data?.itemId;
-        if (itemId) {
-          // You'll need to implement navigation here, possibly with a navigation ref
-        }
+        // // If the notification has itemId data, navigate to that item's details
+        // const itemId = response.notification.request.content.data?.itemId;
+        // if (itemId) {
+        //
+        // }
       }
     );
 

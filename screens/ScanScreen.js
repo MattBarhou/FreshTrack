@@ -140,8 +140,6 @@ export default function ScanScreen({ navigation }) {
         createdAt: serverTimestamp(),
       });
 
-      console.log("Document written with ID: ", docRef.id);
-
       // Schedule expiration notification
       const newItem = {
         id: docRef.id,
