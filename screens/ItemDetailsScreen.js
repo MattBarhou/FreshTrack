@@ -35,7 +35,12 @@ export default function ItemDetailsScreen({ route, navigation }) {
         const barcode = itemData.barcode;
 
         const response = await fetch(
-          `https://world.openfoodfacts.org/api/v3/product/${barcode}.json`
+          `https://world.openfoodfacts.org/api/v3/product/${barcode}.json`,
+          {
+            headers: {
+              "Accept-Language": "en",
+            },
+          }
         );
         const data = await response.json();
 

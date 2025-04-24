@@ -12,8 +12,15 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
 import { db } from "../db/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import BarcodeModal from "../components/BarcodeModal";
+import { scheduleExpirationNotification } from "../lib/notifications";
 
 export default function ScanScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -134,6 +141,23 @@ export default function ScanScreen({ navigation }) {
       });
 
       console.log("Document written with ID: ", docRef.id);
+
+      // Schedule expiration notification
+      const newItem = {
+        id: docRef.id,
+        name: foodName,
+        expiryDate: expiryDate,
+      };
+
+      const notificationId = await scheduleExpirationNotification(newItem);
+
+      // If notification was scheduled, save the ID to Firestore
+      if (notificationId) {
+        await updateDoc(doc(db, "foodItems", docRef.id), {
+          notificationId: notificationId,
+        });
+      }
+
       Toast.show({
         text1: "Food item added successfully!",
         type: "success",

@@ -4,11 +4,11 @@
     "slug": "FoodExpiryTracker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/freshtrack.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/freshtrack.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -28,9 +28,22 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
+          "cameraPermission": "Allow FreshTrack to access your camera"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/freshtrack.png",
+          "color": "#ffffff",
+          "sounds": ["./assets/notification-sound.wav"]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
   }
 }
