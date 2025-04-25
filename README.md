@@ -11,6 +11,7 @@
 - 🔔 **Push Notifications**: Timely reminders to prevent food waste.
 - 🥗 **Nutrition Facts Display**: View detailed nutritional information for each scanned item.
 - ☁️ **Cloud Storage**: All food item data securely stored with **Firebase**.
+- ⚙️ **CI/CD Automation**: Configured a GitHub Actions workflow to automatically build the app on every push to the remote repository.
 - ⚡ Built with **React Native** and **Expo** for fast, cross-platform performance.
 
 ---
