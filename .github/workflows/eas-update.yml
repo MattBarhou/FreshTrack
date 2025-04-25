@@ -20,10 +20,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Expo CLI (modern CLI)
+      - name: Install EAS CLI
         run: npm install -g eas-cli
 
       - name: Run EAS Update
         env:
           EXPO_ACCESS_TOKEN: ${{ secrets.EXPO_ACCESS_TOKEN }}
-        run: eas update --non-interactive
+        run: |
+          eas update --branch main --message "CI auto update from GitHub push" --non-interactive
