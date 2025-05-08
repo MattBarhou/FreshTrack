@@ -22,6 +22,8 @@
       },
       "permissions": [
         "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ]
     },
@@ -51,6 +53,12 @@
         "projectId": "628a06e6-172e-40a5-8320-f7cc2a3969f7"
       }
     },
-    "owner": "mattbarhou"
+    "owner": "mattbarhou",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/628a06e6-172e-40a5-8320-f7cc2a3969f7"
+    }
   }
 }
